@@ -44,3 +44,5 @@ def watch_room(request):
     capture.release()
     video.release()
     cv2.destroyAllWindows()
+
+    return HttpResponse("Camera is Finished.")
