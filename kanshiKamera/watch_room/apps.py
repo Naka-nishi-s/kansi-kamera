@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CameraAppConfig(AppConfig):
+class WatchRoomConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'camera_app'
+    name = 'watch_room'
