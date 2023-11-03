@@ -1,6 +1,7 @@
-# movie-kaiseki
+# 監視カメラ
 
-## How to Create Form
+## -- 個人用メモ --
+### How to create Form
 1. write models.py
 2. write form to templates/{projectname}/index.html
 3. write view
@@ -15,7 +16,7 @@ python manage.py migrate
 6. sqlite3 install & check move
 7. enjoy!
 
-## How to Migration
+### How to Migration
 1. write models.py
 2. put command to create migration file(auto create migrations/0001_initial.py)
 ```
