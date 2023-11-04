@@ -1,56 +1,87 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+import threading
 import cv2
-from .models import Video
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 import datetime
+from  django.shortcuts import render
 
-def watch_room(request):
+def index_view(request):
+    return render(request, 'index.html')
 
-    # get class for capture video
-    capture = cv2.VideoCapture(0)
+# manage camera
+# this is singleton class
+class CameraController:
+    _instance = None
+    _lock = threading.Lock()
 
-    # get frame size for video
-    # 3 => frame width
-    frame_width = int(capture.get(3))
+    def __new__(cls):
+        # access lock -> only one person access this once.
+        with cls._lock:
+            # instance is not created still, create instance.
+            if cls._instance is None:
+                cls._instance = super(CameraController, cls).__new__(cls)
+                cls._is_recording = False
+                cls._camera = cv2.VideoCapture(0)
+        # instance already created, return that.
+        return cls._instance
 
-    # 4 => frame height
-    frame_height = int(capture.get(4))
+    @property
+    def is_recording(self):
+        return self._is_recording
 
-    # create video writer Object
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    fps = 20.0
+    @is_recording.setter
+    def is_recording(self, value):
+        self._is_recording = value
 
-    # save movie to unique name
-    current_time = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    video_name = f'videos/{current_time}.avi'
-    video = cv2.VideoWriter(video_name, fourcc, fps, (frame_width, frame_height))
+    # start record
+    def start_recording(self, video_name):
+        if not self._is_recording:
+            # record starting & recording flag On
+            self._is_recording = True
+            fourcc = cv2.VideoWriter_fourcc(*'XVID')
+            fps = 20.0
+            frame_width = int(self._camera.get(3))
+            frame_height = int(self._camera.get(4))
+            self._video = cv2.VideoWriter(video_name, fourcc, fps, (frame_width, frame_height))
 
-    # continue get 1 frame image => video
-    while True:
-        # read variable from VideoCapture()
-        ret, frame = capture.read()
+            # create new thread. thanks to this, catch other request.
+            threading.Thread(target=self._record_video).start()
 
-        # success get frame => set 'ret' in 'true'
-        # not success get frame => set 'ret' in 'false'
-        if not ret:
-            break
+    # stop record
+    def stop_recording(self):
+        if self._is_recording:
+            self._is_recording = False
 
-        # write in video
-        video.write(frame)
+    # record video
+    def _record_video(self):
+        while self._is_recording:
+            ret, frame = self._camera.read()
+            if ret:
+                self._video.write(frame)
+        self._video.release()
 
-        # show image
-        cv2.imshow('Camera Stream', frame)
+# カメラ開始API
+@require_POST
+@csrf_exempt
+def start_camera(request):
+    # make controller for start record
+    controller = CameraController()
 
-        # if pushed 'q' key, break loop
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+    # recording status. default -> false
+    if not controller.is_recording:
+        video_name = f'videos/{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.avi'
+        controller.start_recording(video_name)
+        return JsonResponse({'status': 'Camera started'}, status=200)
+    else:
+        return JsonResponse({'status': 'Camera is already running'}, status=200)
 
-    # release area
-    capture.release()
-    video.release()
-    cv2.destroyAllWindows()
-
-    video_entry = Video(file_path=video_name)
-    video_entry.save()
-
-    return HttpResponse("Camera is Finished.")
+# カメラ停止API
+@require_POST
+def stop_camera(request):
+    controller = CameraController()
+    if controller.is_recording:
+        controller.stop_recording()
+        return JsonResponse({'status': 'Camera stopped'}, status=200)
+    else:
+        return JsonResponse({'status': 'Camera is not running'}, status=200)

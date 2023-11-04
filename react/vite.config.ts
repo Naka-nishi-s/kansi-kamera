@@ -1,7 +1,20 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  build: {
+    outDir:"../kanshiKamera/static/",
+    emptyOutDir:true,
+    rollupOptions: {
+      output: {
+        entryFileNames: `assets/bundle.js`, // エントリポイントのJSファイル名
+        chunkFileNames: `assets/[name].js`, // 非同期にロードされるチャンクファイル名
+        assetFileNames: ({name}) => {
+          if (/\.(css|scss|sass)$/.test(name)) {
+            return 'assets/styles.css'; // CSSファイル名
+          }
+          return 'assets/[name].[ext]'; // その他のアセットファイル名
+        }
+      }
+    }
+  }
 })
