@@ -7,7 +7,7 @@ function App() {
    */
   const startWatchRoom = () => {
     axios
-      .post("http://localhost:8000/api/start-camera")
+      .post("/api/start-camera")
       .then((res) => console.log(res.data))
       .catch((e) => console.error(e));
   };
@@ -17,7 +17,7 @@ function App() {
    */
   const stopWatchRoom = () => {
     axios
-      .post("http://localhost:8000/api/stop-camera")
+      .post("/api/stop-camera")
       .then((res) => console.log(res.data))
       .catch((e) => console.error(e));
   };

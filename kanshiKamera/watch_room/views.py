@@ -5,7 +5,10 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 from  django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
+# Top page
+@login_required
 def index_view(request):
     return render(request, 'index.html')
 
@@ -78,6 +81,7 @@ def start_camera(request):
 
 # カメラ停止API
 @require_POST
+@csrf_exempt
 def stop_camera(request):
     controller = CameraController()
     if controller.is_recording:
