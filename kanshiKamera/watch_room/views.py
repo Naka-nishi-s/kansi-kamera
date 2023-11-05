@@ -6,11 +6,16 @@ from django.views.decorators.csrf import csrf_exempt
 import datetime
 from  django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .models import Video
 
 # Top page
 @login_required
 def index_view(request):
     return render(request, 'index.html')
+
+# save video path to sqlite
+def save_video_path(video_name):
+    Video.objects.create(file_path=video_name)
 
 # manage camera
 # this is singleton class
@@ -29,6 +34,9 @@ class CameraController:
         # instance already created, return that.
         return cls._instance
 
+    def __init__(self):
+        self._video_name = None
+
     @property
     def is_recording(self):
         return self._is_recording
@@ -42,6 +50,8 @@ class CameraController:
         if not self._is_recording:
             # record starting & recording flag On
             self._is_recording = True
+            self._video_name = video_name
+
             fourcc = cv2.VideoWriter_fourcc(*'XVID')
             fps = 20.0
             frame_width = int(self._camera.get(3))
@@ -63,6 +73,9 @@ class CameraController:
             if ret:
                 self._video.write(frame)
         self._video.release()
+        save_video_path(self._video_name)
+
+
 
 # カメラ開始API
 @require_POST
