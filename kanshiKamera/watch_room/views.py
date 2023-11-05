@@ -67,7 +67,6 @@ class CameraController:
     def stop_recording(self):
         if self._is_recording:
             self._is_recording = False
-            self._video.release()
             save_video_path(self._video_name)
 
     # record video
