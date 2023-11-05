@@ -29,13 +29,15 @@ class CameraController:
             # instance is not created still, create instance.
             if cls._instance is None:
                 cls._instance = super(CameraController, cls).__new__(cls)
-                cls._is_recording = False
-                cls._camera = cv2.VideoCapture(0)
         # instance already created, return that.
         return cls._instance
 
     def __init__(self):
-        self._video_name = None
+        if not hasattr(self, 'initialized'):
+            self.initialized = True
+            self._is_recording = False
+            self._camera = cv2.VideoCapture(0)
+            self._video_name = None
 
     @property
     def is_recording(self):
@@ -65,6 +67,8 @@ class CameraController:
     def stop_recording(self):
         if self._is_recording:
             self._is_recording = False
+            self._video.release()
+            save_video_path(self._video_name)
 
     # record video
     def _record_video(self):
@@ -73,7 +77,6 @@ class CameraController:
             if ret:
                 self._video.write(frame)
         self._video.release()
-        save_video_path(self._video_name)
 
 
 
