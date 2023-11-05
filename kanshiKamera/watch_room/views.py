@@ -8,14 +8,21 @@ from  django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Video
 
-# Top page
+# return Top page
 @login_required
 def index_view(request):
     return render(request, 'index.html')
 
+# return video list
+def video_list_api(request):
+    videos = Video.objects.values('id', 'file_path')
+    video_list = list(videos)
+    return JsonResponse(video_list, safe=False)
+
 # save video path to sqlite
 def save_video_path(video_name):
     Video.objects.create(file_path=video_name)
+
 
 # manage camera
 # this is singleton class
@@ -67,6 +74,8 @@ class CameraController:
     def stop_recording(self):
         if self._is_recording:
             self._is_recording = False
+            if self._video:
+                self._video.release()
             save_video_path(self._video_name)
 
     # record video
@@ -76,7 +85,6 @@ class CameraController:
             if ret:
                 self._video.write(frame)
         self._video.release()
-
 
 
 # カメラ開始API
@@ -90,9 +98,9 @@ def start_camera(request):
     if not controller.is_recording:
         video_name = f'videos/{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.avi'
         controller.start_recording(video_name)
-        return JsonResponse({'status': 'Camera started'}, status=200)
+        return JsonResponse({'isRunning': True , 'status': 'Camera started'}, status=200)
     else:
-        return JsonResponse({'status': 'Camera is already running'}, status=200)
+        return JsonResponse({'isRunning': True, 'status': 'Camera is already running'}, status=200)
 
 # カメラ停止API
 @require_POST
@@ -101,6 +109,6 @@ def stop_camera(request):
     controller = CameraController()
     if controller.is_recording:
         controller.stop_recording()
-        return JsonResponse({'status': 'Camera stopped'}, status=200)
+        return JsonResponse({'isRunning': False, 'status': 'Camera stopped'}, status=200)
     else:
-        return JsonResponse({'status': 'Camera is not running'}, status=200)
+        return JsonResponse({'isRunning': False, 'status': 'Camera is not running'}, status=200)
