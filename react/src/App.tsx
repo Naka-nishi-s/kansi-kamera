@@ -76,14 +76,16 @@ function App() {
       <Box>
         <Typography variant="h5">Archives</Typography>
         {videoList.map((video) => (
+          // <div key={video.id}>
+          //   <a href={video.file_path} target="_blank" rel="noopener noreferrer">
+          //     {video.file_path}
+          //   </a>
+          // </div>
           <div key={video.id}>
-            <a
-              href={`/media/${video.file_path}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {video.file_path}
-            </a>
+            <video width="320" height="240" controls>
+              <source src={video.file_path} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         ))}
       </Box>
