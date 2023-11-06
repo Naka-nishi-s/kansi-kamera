@@ -69,7 +69,7 @@ class CameraController:
             self._is_recording = True
             self._video_name = video_name
 
-            fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
             fps = 20.0
             frame_width = int(self._camera.get(3))
             frame_height = int(self._camera.get(4))

@@ -10,7 +10,7 @@ export const Video = () => {
 
   useEffect(() => {
     axios
-      .get("/api/videos/${videoId}")
+      .get(`/api/videos/${videoId}`)
       .then((res) => {
         setVideoSrc(res.data.filePath);
       })
@@ -19,12 +19,16 @@ export const Video = () => {
       });
   }, []);
 
+  console.log(videoSrc);
+
   return (
     <Box>
-      <video width="320" height="240" controls>
-        <source src={videoSrc} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {videoSrc && (
+        <video width="320" height="240" controls>
+          <source src={`/${videoSrc}`} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
     </Box>
   );
 };
