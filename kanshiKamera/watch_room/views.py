@@ -13,7 +13,13 @@ from .models import Video
 def index_view(request):
     return render(request, 'index.html')
 
-# return video list
+# return video list all
+def video_list_api(request):
+    videos = Video.objects.values('id', 'file_path')
+    video_list = list(videos)
+    return JsonResponse(video_list, safe=False)
+
+# return video list 
 def video_list_api(request):
     videos = Video.objects.values('id', 'file_path')
     video_list = list(videos)
@@ -61,7 +67,7 @@ class CameraController:
             self._is_recording = True
             self._video_name = video_name
 
-            fourcc = cv2.VideoWriter_fourcc(*'XVID')
+            fourcc = cv2.VideoWriter_fourcc(*'MP4V')
             fps = 20.0
             frame_width = int(self._camera.get(3))
             frame_height = int(self._camera.get(4))
@@ -96,7 +102,7 @@ def start_camera(request):
 
     # recording status. default -> false
     if not controller.is_recording:
-        video_name = f'videos/{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.avi'
+        video_name = f'videos/{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.mp4'
         controller.start_recording(video_name)
         return JsonResponse({'isRunning': True , 'status': 'Camera started'}, status=200)
     else:
