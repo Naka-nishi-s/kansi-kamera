@@ -29,7 +29,7 @@ export const Home = () => {
       .post("/api/start-camera")
       .then((res) => {
         setIsRunning(res.data.isRunning);
-        setStatusMsg(response.data.status);
+        setStatusMsg(res.data.status);
       })
       .catch((e) => console.error(e));
   };
@@ -42,7 +42,7 @@ export const Home = () => {
       .post("/api/stop-camera")
       .then((res) => {
         setIsRunning(res.data.isRunning);
-        setStatusMsg(response.data.status);
+        setStatusMsg(res.data.status);
       })
       .catch((e) => console.error(e));
   };
@@ -71,6 +71,9 @@ export const Home = () => {
               Stop!
             </Button>
           </Box>
+
+          <Typography variant="h5">status:{statusMsg}</Typography>
+
           <Box sx={{ pt: 3 }}>
             <Typography variant="h5">Archives</Typography>
             {videoList.map((video) => (
