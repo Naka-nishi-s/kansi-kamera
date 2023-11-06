@@ -19,11 +19,13 @@ def video_list_api(request):
     video_list = list(videos)
     return JsonResponse(video_list, safe=False)
 
-# return video list 
-def video_list_api(request):
-    videos = Video.objects.values('id', 'file_path')
-    video_list = list(videos)
-    return JsonResponse(video_list, safe=False)
+# return video(receive video_id)
+def video_detail_api(request, video_id):
+    try:
+        video = Video.objects.get(id=video_id)
+        return JsonResponse({'filePath': video.file_path})
+    except Video.DoesNotExist:
+        return JsonResponse({'error': 'Video Not Found'}, status=404)
 
 # save video path to sqlite
 def save_video_path(video_name):
