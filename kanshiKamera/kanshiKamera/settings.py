@@ -26,6 +26,23 @@ SECRET_KEY = 'django-insecure-*nv5r!#76xc5j)06qjs@j9q7=c+ekdm*%)1uv8^cur!37a&vv$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {  # root logger
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 ALLOWED_HOSTS = ['192.168.11.15', 'localhost', '127.0.0.1', 'nakanishi-room.com']
 
 
