@@ -1,12 +1,16 @@
+import logging
 import threading
 import cv2
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 import datetime
-from  django.shortcuts import render
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Video
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 # return Top page
 @login_required
@@ -65,35 +69,45 @@ class CameraController:
     # start record
     def start_recording(self, video_name):
         if not self._is_recording:
-            # record starting & recording flag On
-            self._is_recording = True
-            self._video_name = video_name
+            try:
+                # record starting & recording flag On
+                self._is_recording = True
+                self._video_name = video_name
 
-            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-            fps = 20.0
-            frame_width = int(self._camera.get(3))
-            frame_height = int(self._camera.get(4))
-            self._video = cv2.VideoWriter(video_name, fourcc, fps, (frame_width, frame_height))
+                fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+                fps = 20.0
+                frame_width = int(self._camera.get(3))
+                frame_height = int(self._camera.get(4))
+                self._video = cv2.VideoWriter(video_name, fourcc, fps, (frame_width, frame_height))
 
-            # create new thread. thanks to this, catch other request.
-            threading.Thread(target=self._record_video).start()
+                # create new thread. thanks to this, catch other request.
+                threading.Thread(target=self._record_video).start()
+            except Exception as e:
+                logger.error(f"Failed to start recording: {e}", exc_info=True)
+                self._is_recording = False  # Ensure recording flag is set to False
 
     # stop record
     def stop_recording(self):
         if self._is_recording:
-            self._is_recording = False
-            if self._video:
-                self._video.release()
-            save_video_path(self._video_name)
+            try:
+                self._is_recording = False
+                if self._video:
+                    self._video.release()
+                save_video_path(self._video_name)
+            except Exception as e:
+                logger.error(f"Failed to stop recording: {e}", exc_info=True)
 
     # record video
     def _record_video(self):
-        while self._is_recording:
-            ret, frame = self._camera.read()
-            if ret:
-                self._video.write(frame)
-        self._video.release()
-
+        try:
+            while self._is_recording:
+                ret, frame = self._camera.read()
+                if ret:
+                    self._video.write(frame)
+            self._video.release()
+        except Exception as e:
+            logger.error(f"Error during recording: {e}", exc_info=True)
+            self._is_recording = False  # Ensure recording flag is set to False
 
 # カメラ開始API
 @require_POST

@@ -2,6 +2,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { Box, Typography } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./Home";
+import { Login } from "./Login";
 import { Video } from "./Video";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/video/:videoId" element={<Video />} />
       </Routes>
     </Box>

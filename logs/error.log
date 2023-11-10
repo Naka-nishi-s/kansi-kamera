@@ -1,0 +1,166 @@
+[2023-11-09 18:24:55 +0900] [11299] [INFO] Starting gunicorn 21.2.0
+[2023-11-09 18:24:55 +0900] [11299] [INFO] Listening at: unix:/var/www/kansi-kamera/kanshiKamera/kanshiKamera.sock (11299)
+[2023-11-09 18:24:55 +0900] [11299] [INFO] Using worker: sync
+[2023-11-09 18:24:55 +0900] [11304] [INFO] Booting worker with pid: 11304
+[2023-11-09 18:24:55 +0900] [11306] [INFO] Booting worker with pid: 11306
+[2023-11-09 18:24:55 +0900] [11307] [INFO] Booting worker with pid: 11307
+[2023-11-09 18:24:55 +0900] [11308] [INFO] Booting worker with pid: 11308
+[2023-11-09 18:24:55 +0900] [11309] [INFO] Booting worker with pid: 11309
+[2023-11-09 18:24:55 +0900] [11310] [INFO] Booting worker with pid: 11310
+[2023-11-09 18:24:55 +0900] [11311] [INFO] Booting worker with pid: 11311
+[2023-11-09 18:24:55 +0900] [11312] [INFO] Booting worker with pid: 11312
+[2023-11-09 18:24:55 +0900] [11313] [INFO] Booting worker with pid: 11313
+[2023-11-09 18:24:55 +0900] [11314] [INFO] Booting worker with pid: 11314
+[2023-11-09 18:46:45 +0900] [11299] [INFO] Handling signal: term
+[2023-11-09 09:46:45 +0000] [11304] [INFO] Worker exiting (pid: 11304)
+[2023-11-09 09:46:45 +0000] [11308] [INFO] Worker exiting (pid: 11308)
+[2023-11-09 09:46:45 +0000] [11313] [INFO] Worker exiting (pid: 11313)
+[2023-11-09 09:46:45 +0000] [11309] [INFO] Worker exiting (pid: 11309)
+[2023-11-09 09:46:45 +0000] [11307] [INFO] Worker exiting (pid: 11307)
+[2023-11-09 09:46:45 +0000] [11306] [INFO] Worker exiting (pid: 11306)
+[2023-11-09 09:46:45 +0000] [11310] [INFO] Worker exiting (pid: 11310)
+[2023-11-09 09:46:45 +0000] [11312] [INFO] Worker exiting (pid: 11312)
+[2023-11-09 09:46:45 +0000] [11314] [INFO] Worker exiting (pid: 11314)
+[2023-11-09 09:46:45 +0000] [11311] [INFO] Worker exiting (pid: 11311)
+[2023-11-09 18:46:45 +0900] [11299] [ERROR] Worker (pid:11313) was sent SIGTERM!
+[2023-11-09 18:46:45 +0900] [11299] [ERROR] Worker (pid:11306) was sent SIGTERM!
+[2023-11-09 18:46:45 +0900] [11299] [ERROR] Worker (pid:11307) was sent SIGTERM!
+[2023-11-09 18:46:45 +0900] [11299] [ERROR] Worker (pid:11308) was sent SIGTERM!
+[2023-11-09 18:46:45 +0900] [11299] [ERROR] Worker (pid:11309) was sent SIGTERM!
+[2023-11-09 18:47:15 +0900] [11299] [INFO] Shutting down: Master
+[2023-11-09 18:47:16 +0900] [11790] [INFO] Starting gunicorn 21.2.0
+[2023-11-09 18:47:16 +0900] [11790] [INFO] Listening at: unix:/var/www/kansi-kamera/kanshiKamera/kanshiKamera.sock (11790)
+[2023-11-09 18:47:16 +0900] [11790] [INFO] Using worker: sync
+[2023-11-09 18:47:16 +0900] [11794] [INFO] Booting worker with pid: 11794
+[2023-11-09 18:47:16 +0900] [11795] [INFO] Booting worker with pid: 11795
+[2023-11-09 18:47:16 +0900] [11796] [INFO] Booting worker with pid: 11796
+[2023-11-09 18:47:16 +0900] [11797] [INFO] Booting worker with pid: 11797
+[2023-11-09 18:47:16 +0900] [11798] [INFO] Booting worker with pid: 11798
+[2023-11-09 18:47:16 +0900] [11799] [INFO] Booting worker with pid: 11799
+[2023-11-09 18:47:16 +0900] [11800] [INFO] Booting worker with pid: 11800
+[2023-11-09 18:47:16 +0900] [11801] [INFO] Booting worker with pid: 11801
+[2023-11-09 18:47:16 +0900] [11802] [INFO] Booting worker with pid: 11802
+[2023-11-09 18:47:16 +0900] [11803] [INFO] Booting worker with pid: 11803
+[2023-11-09 14:51:52 +0000] [11797] [INFO] Worker exiting (pid: 11797)
+[2023-11-09 23:51:52 +0900] [11790] [INFO] Handling signal: term
+[2023-11-09 14:51:52 +0000] [11796] [INFO] Worker exiting (pid: 11796)
+[2023-11-09 14:51:52 +0000] [11799] [INFO] Worker exiting (pid: 11799)
+[2023-11-09 14:51:52 +0000] [11795] [INFO] Worker exiting (pid: 11795)
+[2023-11-09 14:51:52 +0000] [11801] [INFO] Worker exiting (pid: 11801)
+[2023-11-09 14:51:52 +0000] [11794] [INFO] Worker exiting (pid: 11794)
+[2023-11-09 14:51:52 +0000] [11800] [INFO] Worker exiting (pid: 11800)
+[2023-11-09 14:51:52 +0000] [11803] [INFO] Worker exiting (pid: 11803)
+[2023-11-09 14:51:52 +0000] [11802] [INFO] Worker exiting (pid: 11802)
+[2023-11-09 14:51:52 +0000] [11798] [INFO] Worker exiting (pid: 11798)
+[2023-11-09 23:51:52 +0900] [11790] [ERROR] Worker (pid:11801) was sent SIGTERM!
+[2023-11-09 23:51:52 +0900] [11790] [ERROR] Worker (pid:11803) was sent SIGTERM!
+[2023-11-09 23:51:52 +0900] [11790] [ERROR] Worker (pid:11799) was sent SIGTERM!
+[2023-11-09 23:51:52 +0900] [11790] [ERROR] Worker (pid:11800) was sent SIGTERM!
+[2023-11-09 23:51:52 +0900] [11790] [ERROR] Worker (pid:11802) was sent SIGTERM!
+[2023-11-09 23:51:53 +0900] [11790] [INFO] Shutting down: Master
+[2023-11-09 23:51:53 +0900] [13755] [INFO] Starting gunicorn 21.2.0
+[2023-11-09 23:51:53 +0900] [13755] [INFO] Listening at: unix:/var/www/kansi-kamera/kanshiKamera/kanshiKamera.sock (13755)
+[2023-11-09 23:51:53 +0900] [13755] [INFO] Using worker: sync
+[2023-11-09 23:51:53 +0900] [13758] [INFO] Booting worker with pid: 13758
+[2023-11-09 23:51:53 +0900] [13759] [INFO] Booting worker with pid: 13759
+[2023-11-09 23:51:53 +0900] [13760] [INFO] Booting worker with pid: 13760
+[2023-11-09 23:51:54 +0900] [13761] [INFO] Booting worker with pid: 13761
+[2023-11-09 23:51:54 +0900] [13762] [INFO] Booting worker with pid: 13762
+[2023-11-09 23:51:54 +0900] [13763] [INFO] Booting worker with pid: 13763
+[2023-11-09 23:51:54 +0900] [13764] [INFO] Booting worker with pid: 13764
+[2023-11-09 23:51:54 +0900] [13765] [INFO] Booting worker with pid: 13765
+[2023-11-09 23:51:54 +0900] [13766] [INFO] Booting worker with pid: 13766
+[2023-11-09 23:51:54 +0900] [13767] [INFO] Booting worker with pid: 13767
+[2023-11-09 15:17:40 +0000] [13765] [INFO] Worker exiting (pid: 13765)
+[2023-11-09 15:17:40 +0000] [13766] [INFO] Worker exiting (pid: 13766)
+[2023-11-10 00:17:40 +0900] [13755] [INFO] Handling signal: term
+[2023-11-09 15:17:40 +0000] [13767] [INFO] Worker exiting (pid: 13767)
+[2023-11-09 15:17:40 +0000] [13760] [INFO] Worker exiting (pid: 13760)
+[2023-11-09 15:17:40 +0000] [13761] [INFO] Worker exiting (pid: 13761)
+[2023-11-09 15:17:40 +0000] [13764] [INFO] Worker exiting (pid: 13764)
+[2023-11-09 15:17:40 +0000] [13763] [INFO] Worker exiting (pid: 13763)
+[2023-11-09 15:17:40 +0000] [13762] [INFO] Worker exiting (pid: 13762)
+[2023-11-09 15:17:40 +0000] [13758] [INFO] Worker exiting (pid: 13758)
+[2023-11-09 15:17:40 +0000] [13759] [INFO] Worker exiting (pid: 13759)
+[2023-11-10 00:18:10 +0900] [13755] [INFO] Shutting down: Master
+[2023-11-10 00:18:10 +0900] [14559] [INFO] Starting gunicorn 21.2.0
+[2023-11-10 00:18:10 +0900] [14559] [INFO] Listening at: unix:/var/www/kansi-kamera/kanshiKamera/kanshiKamera.sock (14559)
+[2023-11-10 00:18:10 +0900] [14559] [INFO] Using worker: sync
+[2023-11-10 00:18:10 +0900] [14562] [INFO] Booting worker with pid: 14562
+[2023-11-10 00:18:10 +0900] [14563] [INFO] Booting worker with pid: 14563
+[2023-11-10 00:18:10 +0900] [14564] [INFO] Booting worker with pid: 14564
+[2023-11-10 00:18:10 +0900] [14565] [INFO] Booting worker with pid: 14565
+[2023-11-10 00:18:10 +0900] [14566] [INFO] Booting worker with pid: 14566
+[2023-11-10 00:18:10 +0900] [14567] [INFO] Booting worker with pid: 14567
+[2023-11-10 00:18:10 +0900] [14568] [INFO] Booting worker with pid: 14568
+[2023-11-10 00:18:11 +0900] [14569] [INFO] Booting worker with pid: 14569
+[2023-11-10 00:18:11 +0900] [14570] [INFO] Booting worker with pid: 14570
+[2023-11-10 00:18:11 +0900] [14571] [INFO] Booting worker with pid: 14571
+[2023-11-09 15:53:20 +0000] [14563] [INFO] Worker exiting (pid: 14563)
+[2023-11-09 15:53:20 +0000] [14570] [INFO] Worker exiting (pid: 14570)
+[2023-11-09 15:53:20 +0000] [14569] [INFO] Worker exiting (pid: 14569)
+[2023-11-10 00:53:20 +0900] [14559] [INFO] Handling signal: term
+[2023-11-09 15:53:20 +0000] [14562] [INFO] Worker exiting (pid: 14562)
+[2023-11-09 15:53:20 +0000] [14564] [INFO] Worker exiting (pid: 14564)
+[2023-11-09 15:53:20 +0000] [14568] [INFO] Worker exiting (pid: 14568)
+[2023-11-09 15:53:20 +0000] [14565] [INFO] Worker exiting (pid: 14565)
+[2023-11-09 15:53:20 +0000] [14571] [INFO] Worker exiting (pid: 14571)
+[2023-11-09 15:53:20 +0000] [14566] [INFO] Worker exiting (pid: 14566)
+[2023-11-09 15:53:20 +0000] [14567] [INFO] Worker exiting (pid: 14567)
+[2023-11-10 00:53:20 +0900] [14559] [ERROR] Worker (pid:14563) was sent SIGTERM!
+[2023-11-10 00:53:20 +0900] [14559] [ERROR] Worker (pid:14570) was sent SIGTERM!
+[2023-11-10 00:53:50 +0900] [14559] [INFO] Shutting down: Master
+[2023-11-10 00:53:56 +0900] [514] [INFO] Starting gunicorn 21.2.0
+[2023-11-10 00:53:56 +0900] [514] [INFO] Listening at: unix:/var/www/kansi-kamera/kanshiKamera/kanshiKamera.sock (514)
+[2023-11-10 00:53:56 +0900] [514] [INFO] Using worker: sync
+[2023-11-10 00:53:56 +0900] [625] [INFO] Booting worker with pid: 625
+[2023-11-10 00:53:56 +0900] [626] [INFO] Booting worker with pid: 626
+[2023-11-10 00:53:56 +0900] [628] [INFO] Booting worker with pid: 628
+[2023-11-10 00:53:57 +0900] [629] [INFO] Booting worker with pid: 629
+[2023-11-10 00:53:57 +0900] [630] [INFO] Booting worker with pid: 630
+[2023-11-10 00:53:57 +0900] [631] [INFO] Booting worker with pid: 631
+[2023-11-10 00:53:57 +0900] [632] [INFO] Booting worker with pid: 632
+[2023-11-10 00:53:57 +0900] [633] [INFO] Booting worker with pid: 633
+[2023-11-10 00:53:57 +0900] [634] [INFO] Booting worker with pid: 634
+[2023-11-10 00:53:57 +0900] [635] [INFO] Booting worker with pid: 635
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:625)
+[2023-11-10 03:38:42 +0000] [625] [INFO] Worker exiting (pid: 625)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:626)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:628)
+[2023-11-10 03:38:42 +0000] [628] [INFO] Worker exiting (pid: 628)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:629)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:630)
+[2023-11-10 03:38:42 +0000] [626] [INFO] Worker exiting (pid: 626)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:631)
+[2023-11-10 03:38:42 +0000] [629] [INFO] Worker exiting (pid: 629)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:632)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:633)
+[2023-11-10 03:38:42 +0000] [632] [INFO] Worker exiting (pid: 632)
+[2023-11-10 03:38:42 +0000] [633] [INFO] Worker exiting (pid: 633)
+[2023-11-10 03:38:42 +0000] [630] [INFO] Worker exiting (pid: 630)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:634)
+[2023-11-10 03:38:42 +0000] [631] [INFO] Worker exiting (pid: 631)
+[2023-11-10 12:38:42 +0900] [514] [CRITICAL] WORKER TIMEOUT (pid:635)
+[2023-11-10 03:38:42 +0000] [634] [INFO] Worker exiting (pid: 634)
+[2023-11-10 03:38:42 +0000] [635] [INFO] Worker exiting (pid: 635)
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:635) exited with code 1
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:635) exited with code 1.
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:628) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:630) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:631) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:632) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:625) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:634) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:633) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:629) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [514] [ERROR] Worker (pid:626) was sent SIGKILL! Perhaps out of memory?
+[2023-11-10 12:38:43 +0900] [1214] [INFO] Booting worker with pid: 1214
+[2023-11-10 12:38:43 +0900] [1215] [INFO] Booting worker with pid: 1215
+[2023-11-10 12:38:43 +0900] [1216] [INFO] Booting worker with pid: 1216
+[2023-11-10 12:38:43 +0900] [1217] [INFO] Booting worker with pid: 1217
+[2023-11-10 12:38:43 +0900] [1218] [INFO] Booting worker with pid: 1218
+[2023-11-10 12:38:43 +0900] [1219] [INFO] Booting worker with pid: 1219
+[2023-11-10 12:38:43 +0900] [1220] [INFO] Booting worker with pid: 1220
+[2023-11-10 12:38:43 +0900] [1221] [INFO] Booting worker with pid: 1221
+[2023-11-10 12:38:43 +0900] [1222] [INFO] Booting worker with pid: 1222
+[2023-11-10 12:38:43 +0900] [1223] [INFO] Booting worker with pid: 1223
