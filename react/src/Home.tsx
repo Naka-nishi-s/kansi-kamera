@@ -13,13 +13,17 @@ export const Home = () => {
   const [statusMsg, setStatusMsg] = useState("");
   const [videoList, setVideoList] = useState<VideoList[]>([]);
 
-  useEffect(() => {
+  const fetchVideoList = () => {
     axios
       .get("/api/videos/")
       .then((response) => {
         setVideoList(response.data);
       })
       .catch((error) => console.error("Get Videolist Error", error));
+  };
+
+  useEffect(() => {
+    fetchVideoList();
   }, []);
 
   /**
@@ -44,13 +48,7 @@ export const Home = () => {
       .then((res) => {
         setIsRunning(res.data.isRunning);
         setStatusMsg(res.data.status);
-
-        axios
-          .get("/api/videos/")
-          .then((response) => {
-            setVideoList(response.data);
-          })
-          .catch((error) => console.error("Get Videolist Error", error));
+        fetchVideoList();
       })
       .catch((e) => console.error(e));
   };

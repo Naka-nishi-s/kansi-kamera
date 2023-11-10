@@ -28,6 +28,7 @@ def video_detail_api(request, video_id):
 
 # save video path to sqlite
 def save_video_path(video_name):
+    logger.debug("Video Save is Started!")
     Video.objects.create(file_path=video_name)
 
 
@@ -83,12 +84,16 @@ class CameraController:
 
     # stop record
     def stop_recording(self):
+        logger.debug("Stop Record Started!")
         if self._is_recording:
             try:
                 self._is_recording = False
                 if self._video:
+                    logger.debug("Video Release Started!")
                     self._video.release()
+                    logger.debug("Video Release is Completed!")
                 save_video_path(self._video_name)
+                logger.debug("Video Save is Completed!")
             except Exception as e:
                 logger.error(f"Failed to stop recording: {e}", exc_info=True)
 
@@ -123,6 +128,7 @@ def start_camera(request):
 @require_POST
 @csrf_exempt
 def stop_camera(request):
+    logger.debug("Stop Request Got!")
     controller = CameraController()
     if controller.is_recording:
         controller.stop_recording()
