@@ -44,6 +44,13 @@ export const Home = () => {
       .then((res) => {
         setIsRunning(res.data.isRunning);
         setStatusMsg(res.data.status);
+
+        axios
+          .get("/api/videos/")
+          .then((response) => {
+            setVideoList(response.data);
+          })
+          .catch((error) => console.error("Get Videolist Error", error));
       })
       .catch((e) => console.error(e));
   };
