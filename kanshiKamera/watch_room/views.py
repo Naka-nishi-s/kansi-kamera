@@ -12,11 +12,6 @@ from .models import Video
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-# return Top page
-@login_required
-def index_view(request):
-    return render(request, 'index.html')
-
 # return video list all
 def video_list_api(request):
     videos = Video.objects.values('id', 'file_path')

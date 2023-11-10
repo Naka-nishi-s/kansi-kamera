@@ -15,7 +15,7 @@ class CustomLoginView(View):
 
         if user is not None:
             # ログイン成功: トークンや成功メッセージを返す
-            return JsonResponse({'status': 'success', 'token': 'your-token'})
+            return JsonResponse({'status': 'success', 'isLoggedIn': 'true'})
         else:
             # ログイン失敗: エラーメッセージを返す
-            return JsonResponse({'status': 'error', 'message': 'Invalid credentials'}, status=400)
+            return JsonResponse({'status': 'error', 'isLoggedIn': 'true'}, status=400)

@@ -8,19 +8,29 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { authState } from "./atoms/authState";
 
 export const Login = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const setIsLoggedIn = useSetRecoilState(authState);
 
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
 
-    console.log(username);
-    console.log(password);
-
-    const response = await axios.post("/api/login", { username, password });
-    console.log(response);
+    try {
+      const response = await axios.post("/api/login", { username, password });
+      if (response.data.isLoggedIn) {
+        setIsLoggedIn({ isLoggedIn: true });
+        navigate("/");
+      }
+    } catch (e: any) {
+      console.log(e);
+    }
   };
 
   return (
