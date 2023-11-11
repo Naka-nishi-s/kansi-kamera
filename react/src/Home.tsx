@@ -14,17 +14,34 @@ export const Home = () => {
   const [videoList, setVideoList] = useState<VideoList[]>([]);
   const [showMoreVideo, setShowMoreVideo] = useState(false);
 
+  /**
+   * [First] Fetch to API
+   */
+  const firstFetchVideoList = () => {
+    axios
+      .get("/api/videos/")
+      .then((response) => {
+        setVideoList(response.data.videos);
+        setIsRunning(response.data.isRunning);
+        setStatusMsg(response.data.status);
+      })
+      .catch((error) => console.error("Get Videolist Error", error));
+  };
+
+  /**
+   * Fetch to API
+   */
   const fetchVideoList = () => {
     axios
       .get("/api/videos/")
       .then((response) => {
-        setVideoList(response.data);
+        setVideoList(response.data.videos);
       })
       .catch((error) => console.error("Get Videolist Error", error));
   };
 
   useEffect(() => {
-    fetchVideoList();
+    firstFetchVideoList();
   }, []);
 
   /**

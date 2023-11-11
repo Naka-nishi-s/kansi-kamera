@@ -16,7 +16,12 @@ logger = logging.getLogger(__name__)
 def video_list_api(request):
     videos = Video.objects.values('id', 'file_path')
     video_list = list(videos)
-    return JsonResponse(video_list, safe=False)
+
+    controller = CameraController()
+    is_running = controller.is_recording
+    camera_status = 'Camera is already running' if is_running else 'Camera is not running'
+
+    return JsonResponse({'videos': video_list, 'isRunning': is_running, 'status':camera_status}, safe=False)
 
 # return video(receive video_id)
 def video_detail_api(request, video_id):
@@ -30,7 +35,6 @@ def video_detail_api(request, video_id):
 def save_video_path(video_name):
     logger.debug("Video Save is Started!")
     Video.objects.create(file_path=video_name)
-
 
 # manage camera
 # this is singleton class
