@@ -1,6 +1,7 @@
 import logging
 import threading
 import cv2
+import os
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
@@ -8,6 +9,7 @@ import datetime
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Video
+from django.conf import settings
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -32,8 +34,10 @@ def video_detail_api(request, video_id):
         return JsonResponse({'error': 'Video Not Found'}, status=404)
 
 # save video path to sqlite
-def save_video_path(video_name):
+def save_video_path(video_path):
     logger.debug("Video Save is Started!")
+    video_name = os.path.basename(video_path)
+    logger.debug(f"Video is Saved: {video_name}")
     Video.objects.create(file_path=video_name)
 
 # manage camera
@@ -68,23 +72,23 @@ class CameraController:
 
     # start record
     def start_recording(self, video_name):
+        video_path = os.path.join(settings.MEDIA_ROOT, video_name)  # 完全なパスを生成
+
         if not self._is_recording:
             try:
-                # record starting & recording flag On
                 self._is_recording = True
-                self._video_name = video_name
+                self._video_name = video_path
 
                 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
                 fps = 20.0
                 frame_width = int(self._camera.get(3))
                 frame_height = int(self._camera.get(4))
-                self._video = cv2.VideoWriter(video_name, fourcc, fps, (frame_width, frame_height))
+                self._video = cv2.VideoWriter(video_path, fourcc, fps, (frame_width, frame_height))
 
-                # create new thread. thanks to this, catch other request.
                 threading.Thread(target=self._record_video).start()
             except Exception as e:
                 logger.error(f"Failed to start recording: {e}", exc_info=True)
-                self._is_recording = False  # Ensure recording flag is set to False
+                self._is_recording = False
 
     # stop record
     def stop_recording(self):
@@ -122,7 +126,7 @@ def start_camera(request):
 
     # recording status. default -> false
     if not controller.is_recording:
-        video_name = f'videos/{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.mp4'
+        video_name = f'{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.mp4'
         controller.start_recording(video_name)
         return JsonResponse({'isRunning': True , 'status': 'Camera started'}, status=200)
     else:
