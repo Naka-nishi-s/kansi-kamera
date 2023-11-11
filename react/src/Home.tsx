@@ -12,6 +12,7 @@ export const Home = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [statusMsg, setStatusMsg] = useState("");
   const [videoList, setVideoList] = useState<VideoList[]>([]);
+  const [showMoreVideo, setShowMoreVideo] = useState(false);
 
   const fetchVideoList = () => {
     axios
@@ -82,11 +83,23 @@ export const Home = () => {
 
           <Box sx={{ pt: 3 }}>
             <Typography variant="h4">Archives</Typography>
-            {videoList.map((video) => (
-              <Box key={video.id} sx={{ pt: 1 }}>
+            {videoList.map((video, index) => (
+              <Box
+                key={video.id}
+                sx={{
+                  pt: 1,
+                  display: index >= 5 && !showMoreVideo ? "none" : "block",
+                }}
+              >
                 <Link to={`/video/${video.id}`}>{video.file_path}</Link>
               </Box>
             ))}
+
+            {videoList.length > 5 && (
+              <Button onClick={() => setShowMoreVideo(!showMoreVideo)}>
+                {showMoreVideo ? "Fold" : "Show More"}
+              </Button>
+            )}
           </Box>
         </Box>
       </Paper>

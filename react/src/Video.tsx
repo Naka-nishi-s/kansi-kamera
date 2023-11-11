@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 export const Video = () => {
   const { videoId } = useParams();
   const [videoSrc, setVideoSrc] = useState("");
-  console.log(videoId);
 
   useEffect(() => {
     axios
