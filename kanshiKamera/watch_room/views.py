@@ -59,7 +59,6 @@ class CameraController:
         if not hasattr(self, 'initialized'):
             self.initialized = True
             self._is_recording = False
-            self._camera = cv2.VideoCapture(0)
             self._video_name = None
 
     @property
@@ -78,11 +77,14 @@ class CameraController:
             try:
                 self._is_recording = True
                 self._video_name = video_path
+                
+                self._camera = cv2.VideoCapture(0)
 
                 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
                 fps = 20.0
-                frame_width = int(self._camera.get(3))
-                frame_height = int(self._camera.get(4))
+                frame_width = 640
+                frame_height = 480
+                
                 self._video = cv2.VideoWriter(video_path, fourcc, fps, (frame_width, frame_height))
 
                 threading.Thread(target=self._record_video).start()
@@ -121,15 +123,18 @@ class CameraController:
 @require_POST
 @csrf_exempt
 def start_camera(request):
+    logger.debug("Start Request Got!")
     # make controller for start record
     controller = CameraController()
 
     # recording status. default -> false
     if not controller.is_recording:
+        logger.debug("Start Recoarding!")
         video_name = f'{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.mp4'
         controller.start_recording(video_name)
         return JsonResponse({'isRunning': True , 'status': 'Camera started'}, status=200)
     else:
+        logger.debug("Already Start...")
         return JsonResponse({'isRunning': True, 'status': 'Camera is already running'}, status=200)
 
 # カメラ停止API
